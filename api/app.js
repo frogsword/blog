@@ -21,7 +21,7 @@ app.use(bodyParser.json());
 app.use(passport.initialize());
 
 let corsOptions = {
-    origin: ["http://localhost:3000", "http://localhost:5173"],
+    origin: ["http://localhost:3000", "http://localhost:5173", "https://frogsword-blog-api.adaptable.app"],
     optionsSuccessStatus: 200,
 }
 app.options("*", cors(corsOptions))
