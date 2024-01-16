@@ -12,6 +12,8 @@ router.post("/login", authController.login)
 
 router.post("/logout", authController.logout)
 
+router.get("/auth-status", authController.authStatus)
+
 //posts
 router.get("/posts", postController.allPosts)
 

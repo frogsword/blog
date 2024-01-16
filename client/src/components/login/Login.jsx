@@ -13,6 +13,7 @@ export function Login() {
         e.preventDefault();
         if (input.username !== "" && input.password !== "") {
             auth.loginAction(input)
+            window.location.reload(false)
             return
         }
         alert("please provide a valid username and password")

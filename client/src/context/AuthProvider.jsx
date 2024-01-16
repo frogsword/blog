@@ -13,6 +13,7 @@ const AuthProvider = ({ children }) => {
             const response = await fetch('https://frogsword-blog-api.adaptable.app/api/login', {
                 mode: 'cors',
                 method: 'POST',
+                credentials: 'include',
                 body: JSON.stringify(data),
                 headers: {
                     'Content-Type': 'application/json'

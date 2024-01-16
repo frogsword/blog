@@ -113,3 +113,13 @@ exports.logout = function(req, res, next) {
         message: "logout success"
     })
 }
+
+exports.authStatus = function(req, res, next) {
+    console.log(req.cookies)
+    if (req.cookies?.token === req.cookies.token) {
+        res.send({isAuthenticated: true})
+    }
+    else {
+        res.send({isAuthenticated: false})
+    }
+}
