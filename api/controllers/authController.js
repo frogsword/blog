@@ -110,7 +110,8 @@ exports.logout = function(req, res, next) {
         sameSite: "Lax"
     }).send({
         authenticated: false,
-        message: "logout success"
+        message: "logout success",
+        token: token
     })
 }
 
