@@ -80,47 +80,46 @@ exports.login = async function (req, res, next) {
                         return res.status(400).json(err)
                     }
     
-                    // res.json({
-                    //     token: token,
-                    //     user: body
-                    // })
-
-                    res.cookie("token", token, {
-                        httpOnly: true,
-                        maxAge: 100*60*60*24*7,
-                        domain: process.env.DOMAIN,
-                        sameSite: "Lax"
-                    }).json({
+                    res.json({
                         token: token,
-                        user: body,
-                        authenticated: true,
-                        message: "auth success"
+                        user: body
                     })
+
+                    // res.cookie("token", token, {
+                    //     httpOnly: true,
+                    //     maxAge: 100*60*60*24*7,
+                    //     domain: process.env.DOMAIN,
+                    //     sameSite: "Lax"
+                    // }).json({
+                    //     token: token,
+                    //     user: body,
+                    //     authenticated: true,
+                    //     message: "auth success"
+                    // })
                 }
             )
         })
     }) (req, res)
 }
 
-exports.logout = function(req, res, next) {
-    res.cookie("token", null, {
-        httpOnly: true,
-        maxAge: 100*60*60*24*7,
-        domain: process.env.DOMAIN,
-        sameSite: "Lax"
-    }).send({
-        authenticated: false,
-        message: "logout success",
-        token: token
-    })
-}
+// exports.logout = function(req, res, next) {
+//     res.cookie("token", null, {
+//         httpOnly: true,
+//         maxAge: 100*60*60*24*7,
+//         domain: process.env.DOMAIN,
+//         sameSite: "Lax"
+//     }).send({
+//         authenticated: false,
+//         message: "logout success",
+//     })
+// }
 
-exports.authStatus = function(req, res, next) {
-    console.log(req.cookies)
-    if (req.cookies?.token === req.cookies.token) {
-        res.send({isAuthenticated: true})
-    }
-    else {
-        res.send({isAuthenticated: false})
-    }
-}
+// exports.authStatus = function(req, res, next) {
+//     console.log(req.cookies)
+//     if (req.cookies?.token === req.cookies.token) {
+//         res.send({isAuthenticated: true})
+//     }
+//     else {
+//         res.send({isAuthenticated: false})
+//     }
+// }
