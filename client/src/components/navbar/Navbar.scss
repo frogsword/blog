@@ -1,0 +1,17 @@
+.navbar {
+    background-color: #121212;
+    color: azure;
+}
+
+#login-btn {
+    --bs-btn-bg: #7c3aed;
+    --bs-btn-border-color:  #5914d2;
+    --bs-btn-hover-bg: #5914d2;
+    --bs-btn-active-bg: #450fa3;
+    --bs-btn-hover-border-color: #5914d2;
+    --bs-btn-active-border-color: #450fa3;
+}
+
+
+@import "bootstrap/scss/bootstrap";
+

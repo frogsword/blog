@@ -59,7 +59,7 @@ exports.register = [
 ]
 
 exports.login = async function (req, res, next) {
-    const loginUser = await User.findOne({username: req.body.username})//for postman test
+    const loginUser = await User.findOne({username: req.body.username})
 
     passport.authenticate("local", {session: false}, (err, user) => {
         user = loginUser;
@@ -80,12 +80,36 @@ exports.login = async function (req, res, next) {
                         return res.status(400).json(err)
                     }
     
-                    res.json({
+                    // res.json({
+                    //     token: token,
+                    //     user: body
+                    // })
+
+                    res.cookie("token", token, {
+                        httpOnly: true,
+                        maxAge: 100*60*60*24*7,
+                        domain: process.env.DOMAIN,
+                        sameSite: "Lax"
+                    }).json({
                         token: token,
-                        user: body
+                        user: body,
+                        authenticated: true,
+                        message: "auth success"
                     })
                 }
             )
         })
     }) (req, res)
+}
+
+exports.logout = function(req, res, next) {
+    res.cookie("token", null, {
+        httpOnly: true,
+        maxAge: 100*60*60*24*7,
+        domain: process.env.DOMAIN,
+        sameSite: "Lax"
+    }).send({
+        authenticated: false,
+        message: "logout success"
+    })
 }

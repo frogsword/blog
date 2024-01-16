@@ -5,6 +5,7 @@ const mongoose = require("mongoose");
 const helmet = require("helmet");
 const passport = require('passport')
 const cors = require("cors")
+const cookieParser = require("cookie-parser")
 const bodyParser = require("body-parser")
 const apiRouter = require("./routes/api")
 
@@ -19,6 +20,7 @@ app.use(helmet());
 app.use(bodyParser.urlencoded({extended: false}))
 app.use(bodyParser.json());
 app.use(passport.initialize());
+app.use(cookieParser())
 
 let corsOptions = {
     origin: ["http://localhost:3000", "http://localhost:5173", "https://frogsword-blog-api.adaptable.app"],
