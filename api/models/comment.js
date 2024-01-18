@@ -6,9 +6,11 @@ const CommentSchema = new Schema({
     post: {type: Schema.Types.ObjectId, ref: 'Post'},
     parentComment: {type: Schema.Types.ObjectId, ref: 'Comment'},
     user: {type: Schema.Types.ObjectId, ref: 'User', required: true},
-    comments: [{type: Schema.Types.ObjectId, ref: 'Comment'}],
+    comments: [{type: Schema.Types.ObjectId, ref: 'Comment', autopopulate: true}],
     likes: [{type: Schema.Types.ObjectId, ref: 'User'}],
     dateCreated: {type: Date, default: Date.now},
 })
+
+CommentSchema.plugin(require('mongoose-autopopulate'));
 
 module.exports = mongoose.model("Comment", CommentSchema)
