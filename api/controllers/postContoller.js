@@ -6,13 +6,13 @@ const Comment = require("../models/comment");
 require("dotenv").config();
 
 exports.allPosts = async function(req, res, next) {
-    const posts = await Post.find().sort({dateCreated: -1}).populate('author').exec()
+    const posts = await Post.find().sort({dateCreated: -1}).populate('author comments').exec()
 
     return res.status(200).json(posts)
 }
 
 exports.singlePost = async function(req, res, next) {
-    const post = await Post.findById(req.params.postid).populate('author').exec()
+    const post = await Post.findById(req.params.postid).populate('author comments').exec()
 
     return res.status(200).json(post)
 }
