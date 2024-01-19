@@ -22,7 +22,7 @@ exports.parentCommentAndChildrenComments = async function(req, res, next) {
 }
 
 exports.singleComment = async function(req, res, next) {
-    const comment = await Comment.findById(req.params.commentid).populate('parentComment').exec()
+    const comment = await Comment.findById(req.params.commentid).populate('parentComment post comments user').exec()
 
     return res.status(200).json(comment)
 }
