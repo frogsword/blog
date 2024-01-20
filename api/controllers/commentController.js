@@ -52,8 +52,6 @@ exports.createCommentOnPost = [
             
                         res.status(200).json({
                             comment, 
-                            token: req.token, 
-                            authData,
                         })
                     }
         })
