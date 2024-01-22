@@ -147,9 +147,7 @@ exports.deleteComment = [
                     res.status(403).json({msg: "err 403"})
                 }
                 else {
-                    const updatedComment = await Comment.findOneAndUpdate({_id: req.params.commentid}, {
-                        comment: "[deleted]",
-                    })
+                    const updatedComment = await Comment.findOneAndDelete({_id: req.params.commentid})
                 
                     res.status(200).json({
                         updatedComment, 

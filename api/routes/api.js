@@ -38,6 +38,6 @@ router.post("/comments/:commentid/comments", verifyToken, commentController.crea
 
 router.put("/posts/:postid/comments/:commentid", verifyToken, commentController.updateComment)
 
-router.put("/posts/:postid/comments/:commentid/delete", verifyToken, commentController.deleteComment)
+router.delete("/comments/:commentid/delete", verifyToken, commentController.deleteComment)
 
 module.exports = router;
