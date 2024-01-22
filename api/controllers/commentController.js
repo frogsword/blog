@@ -148,7 +148,9 @@ exports.deleteComment = [
                 else {
                     const updatedComment = await Comment.findOneAndDelete({_id: req.params.commentid})
                 
-                    res.status(200)
+                    res.status(200).json({
+                        "message": "delete success"
+                    })
                 }
             }
             //not authorized

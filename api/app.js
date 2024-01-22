@@ -25,7 +25,8 @@ app.use(cookieParser())
 let corsOptions = {
     origin: ["http://localhost:3000", "http://localhost:5173", "https://frogsword-blog-api.adaptable.app"],
     optionsSuccessStatus: 200,
-    credentials: true
+    credentials: true,
+    allowedMethods: ["GET", "POST", "PUT", "DELETE"]
 }
 app.options("*", cors(corsOptions))
 
