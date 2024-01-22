@@ -131,7 +131,6 @@ exports.updateComment = [
     }
 ]
 
-//doesn't actually delete comment, just replaces original text with "[deleted]" so that child comments dont get deleted
 exports.deleteComment = [
     async(req, res, next) => {
         jwt.verify(req.token, process.env.SECRET_KEY, async(err, authData) => {
@@ -149,11 +148,7 @@ exports.deleteComment = [
                 else {
                     const updatedComment = await Comment.findOneAndDelete({_id: req.params.commentid})
                 
-                    res.status(200).json({
-                        updatedComment, 
-                        token: req.token, 
-                        data: authData
-                    })
+                    res.status(200)
                 }
             }
             //not authorized
