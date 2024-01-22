@@ -36,7 +36,7 @@ router.post("/posts/:postid/comments", verifyToken, commentController.createComm
 
 router.post("/comments/:commentid/comments", verifyToken, commentController.createCommentOnComment)
 
-router.put("/posts/:postid/comments/:commentid", verifyToken, commentController.updateComment)
+router.put("/comments/:commentid", verifyToken, commentController.updateComment)
 
 router.delete("/comments/:commentid/", verifyToken, commentController.deleteComment)
 
