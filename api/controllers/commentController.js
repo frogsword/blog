@@ -48,7 +48,7 @@ exports.createCommentOnPost = [
                         await Post.findByIdAndUpdate(req.params.postid, {$push: {comments: comment}})
 
                         //update user comments
-                        await User.findByIdAndUpdate(authData.user._id, {$push: {comments: comment}})
+                        // await User.findByIdAndUpdate(authData.user._id, {$push: {comments: comment}})
             
                         res.status(200).json({
                             comment, 

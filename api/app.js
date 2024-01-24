@@ -16,7 +16,8 @@ mongoose.connect(process.env.DB);
 const db = mongoose.connection;
 db.on('error', console.error.bind(console, 'mongo connection error'));
 
-app.use(helmet());
+// app.use(helmet());
+app.use(helmet({crossOriginResourcePolicy: false}))
 app.use(bodyParser.urlencoded({extended: false}))
 app.use(bodyParser.json());
 app.use(passport.initialize());
