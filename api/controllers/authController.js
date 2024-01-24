@@ -114,12 +114,20 @@ exports.login = async function (req, res, next) {
 //     })
 // }
 
-// exports.authStatus = function(req, res, next) {
-//     console.log(req.cookies)
-//     if (req.cookies?.token === req.cookies.token) {
-//         res.send({isAuthenticated: true})
-//     }
-//     else {
-//         res.send({isAuthenticated: false})
-//     }
-// }
+exports.authStatus = function(req, res, next) {
+    try {
+        jwt.verify(req.token, process.env.SECRET_KEY, async(err, authData) => {
+            if (err) {
+                res.status(403).json({msg: "err 403"})
+            }
+            res.status(200).json({
+                isAuthenticated: true
+            })
+        })
+    } 
+    catch (err) {
+        res.status(200).json({
+            isAuthenticated: false
+        }) 
+    }      
+}
