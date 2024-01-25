@@ -118,7 +118,9 @@ exports.authStatus = function(req, res, next) {
     try {
         jwt.verify(req.token, process.env.SECRET_KEY, async(err, authData) => {
             if (err) {
-                res.status(403).json({msg: "err 403"})
+                res.status(403).json({
+                    isAuthenticated: false
+                })
             }
             res.status(200).json({
                 isAuthenticated: true
