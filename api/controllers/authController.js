@@ -124,7 +124,7 @@ exports.authStatus = function(req, res, next) {
             }
             res.status(200).json({
                 isAuthenticated: true,
-                user: authData.user.username
+                user: authData
             })
         })
     } 
