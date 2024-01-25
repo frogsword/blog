@@ -74,7 +74,7 @@ exports.login = async function (req, res, next) {
             jwt.sign(
                 {user: body},
                 process.env.SECRET_KEY,
-                {expiresIn: '1d'},
+                {expiresIn: '30s'},
                 (err, token) => {
                     if (err) {
                         return res.status(400).json(err)
