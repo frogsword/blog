@@ -115,22 +115,26 @@ exports.login = async function (req, res, next) {
 // }
 
 exports.authStatus = function(req, res, next) {
-    try {
+    // try {
         jwt.verify(req.token, process.env.SECRET_KEY, async(err, authData) => {
             if (err) {
-                res.status(403).json({
-                    isAuthenticated: false
+                res.json({
+                    isAuthenticated: false,
                 })
+                return
             }
-            res.status(200).json({
+            res.json({
                 isAuthenticated: true,
-                user: authData
+                authData
             })
         })
-    } 
-    catch (err) {
-        res.status(200).json({
-            isAuthenticated: false
-        }) 
-    }      
+    // } 
+    // catch (err) {
+    //     res.status(403).json({
+    //         isAuthenticated: false,
+    //         user: {
+    //             _id: "none"
+    //         }
+    //     }) 
+    // }      
 }
