@@ -47,8 +47,8 @@ exports.createCommentOnPost = [
                         //update post comments
                         // await Post.findByIdAndUpdate(req.params.postid, {$push: {comments: comment}})
 
-                        //update user comments
-                        // await User.findByIdAndUpdate(authData.user._id, {$push: {comments: comment}})
+                        // update user comments
+                        await User.findByIdAndUpdate(authData.user._id, {$push: {comments: comment}})
             
                         res.status(200).json({
                             comment, 
@@ -146,7 +146,10 @@ exports.deleteComment = [
                     res.status(403).json({msg: "err 403"})
                 }
                 else {
-                    const updatedComment = await Comment.findOneAndDelete({_id: req.params.commentid})
+                    await Comment.findByIdAndDelete(req.params.commentid).exec()
+
+                    // // update user comments
+                    await User.findByIdAndUpdate(authData.user._id, {$pullAll: {comments: [commentToDelete]}})
                 
                     res.status(200).json({
                         "message": "delete success"

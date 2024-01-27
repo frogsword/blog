@@ -1,6 +1,5 @@
 const mongoose = require("mongoose")
 const Schema = mongoose.Schema;
-const moment = require("moment")
 
 const PostSchema = new Schema({
     title: {type: String, minLength: 1, required: true},
@@ -8,7 +7,7 @@ const PostSchema = new Schema({
     author: {type: Schema.Types.ObjectId, ref: 'User', required: true},
     likes: [{type: Schema.Types.ObjectId, ref: 'User'}],
     comments: [{type: Schema.Types.ObjectId, ref: 'Comment'}],
-    dateCreated: {type: Date, default: moment().format()},
+    dateCreated: {type: Date, default: Date.now},
 })
 
 PostSchema.virtual("post_date_formatted").get(function () {

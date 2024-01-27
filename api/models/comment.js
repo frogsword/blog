@@ -9,7 +9,7 @@ const CommentSchema = new Schema({
     user: {type: Schema.Types.ObjectId, ref: 'User', required: true, autopopulate: true},
     comments: [{type: Schema.Types.ObjectId, ref: 'Comment', autopopulate: true}],
     likes: [{type: Schema.Types.ObjectId, ref: 'User'}],
-    dateCreated: {type: Date, default: moment().format()},
+    dateCreated: {type: Date, default: Date.now},
 })
 
 CommentSchema.virtual("post_date_formatted").get(function () {
