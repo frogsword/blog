@@ -11,6 +11,14 @@ const CommentSchema = new Schema({
     dateCreated: {type: Date, default: Date.now},
 })
 
+CommentSchema.virtual("post_date_formatted").get(function () {
+	time = this.dateCreated.toLocaleTimeString("en-US");
+	date = this.dateCreated.toDateString();
+	return `${time} • ${date}`;
+});
+CommentSchema.set('toObject', { virtuals: true });
+CommentSchema.set('toJSON', { virtuals: true });
+
 CommentSchema.plugin(require('mongoose-autopopulate'));
 
 module.exports = mongoose.model("Comment", CommentSchema)
