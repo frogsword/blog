@@ -6,7 +6,7 @@ const Comment = require("../models/comment");
 require("dotenv").config();
 
 exports.allPosts = async function(req, res, next) {
-    const posts = await Post.find().sort({dateCreated: 1}).exec()
+    const posts = await Post.find().sort({dateCreated: -1}).exec()
 
     return res.status(200).json(posts)
 }
