@@ -7,7 +7,7 @@ const e = require("express");
 require("dotenv").config();
 
 exports.allCommentsOnPost = async function(req, res, next) {
-    const comments = await Comment.find({post: req.params.postid}).sort({dateCreated: -1}).populate('dateCreated').exec()
+    const comments = await Comment.find({post: req.params.postid}).sort({dateCreated: -1}).exec()
 
     return res.status(200).json(comments)
 }

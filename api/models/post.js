@@ -10,12 +10,4 @@ const PostSchema = new Schema({
     dateCreated: {type: Date, default: Date.now},
 })
 
-PostSchema.virtual("post_date_formatted").get(function () {
-	time = this.dateCreated.toLocaleTimeString("en-US");
-	date = this.dateCreated.toDateString();
-	return `${time} • ${date}`;
-});
-PostSchema.set('toObject', { virtuals: true });
-PostSchema.set('toJSON', { virtuals: true });
-
 module.exports = mongoose.model("Post", PostSchema)
