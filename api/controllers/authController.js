@@ -16,20 +16,26 @@ exports.register = [
 
         if(!errors.isEmpty()) {
             res.status(403).json({
-                username: req.body.username,
-                errors: errors.array()
+                errors: errors.array(),
+                message: "error: registration failed"
             })
         }
 
-        if((req.body.password !== req.body.confirm) && (req.body.password.length > 6)) {
+        if((req.body.password !== req.body.confirm) && (req.body.password.length > 8)) {
             res.status(403).json({
-                message: "passwords do not match, make sure each password matches and is at least 6 characters long",
+                message: "passwords do not match: make sure each password matches and is at least 8 characters long",
+            })   
+        }
+
+        if(!req.body.password.length > 8) {
+            res.status(403).json({
+                message: "password not long enough: make sure each password matches and is at least 8 characters long",
             })   
         }
 
         if(duplicateUsername.length > 0) {
             res.status(403).json({
-                message: "username already exists",
+                message: "username already exists, please select another username",
             })   
         }
 
@@ -48,7 +54,6 @@ exports.register = [
                     user.save()
 
                     res.status(200).json({
-                        message: "user created successfully",
                         username: req.body.username,
                     })
                     return
