@@ -33,7 +33,7 @@ exports.register = [
             })   
         }
 
-        else if(req.body.password.lower() != req.body.password) {
+        else if(req.body.password.toLowerCase() != req.body.password) {
             res.status(403).json({
                 message: "Password must include at least one uppercase letter.",
             })   
@@ -60,7 +60,7 @@ exports.register = [
                     user.save()
 
                     res.status(200).json({
-                        username: req.body.username,
+                        message: "User created successfully. Please login."
                     })
                     return
                 }
