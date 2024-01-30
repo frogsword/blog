@@ -21,21 +21,27 @@ exports.register = [
             })
         }
 
-        else if((req.body.password !== req.body.confirm) && (req.body.password.length > 7)) {
+        else if(duplicateUsername.length > 0) {
             res.status(403).json({
-                message: "passwords do not match: make sure each password matches and is at least 8 characters long",
+                message: "Username already exists. Select another Username.",
             })   
         }
 
         else if(!req.body.password.length > 7) {
             res.status(403).json({
-                message: "password not long enough: make sure each password matches and is at least 8 characters long",
+                message: "Password must be at least 8 characters in length.",
             })   
         }
 
-        else if(duplicateUsername.length > 0) {
+        else if(req.body.password.lower() != req.body.password) {
             res.status(403).json({
-                message: "username already exists, please select another username",
+                message: "Password must include at least one uppercase letter.",
+            })   
+        }
+
+        else if(req.body.password !== req.body.confirm) {
+            res.status(403).json({
+                message: "Passwords do not match.",
             })   
         }
 
@@ -70,7 +76,7 @@ exports.login = async function (req, res, next) {
         user = loginUser;
         if (err || !user) {
             return res.status(403).json({
-                message: "incorrect username or password"
+                message: "Incorrect username or password."
             })
         }
         req.login(user, {session: false}, (err) => {
@@ -89,38 +95,13 @@ exports.login = async function (req, res, next) {
                         token: token,
                         user: body
                     })
-
-                    // res.cookie("token", token, {
-                    //     httpOnly: true,
-                    //     maxAge: 100*60*60*24*7,
-                    //     domain: process.env.DOMAIN,
-                    //     sameSite: "Lax"
-                    // }).json({
-                    //     token: token,
-                    //     user: body,
-                    //     authenticated: true,
-                    //     message: "auth success"
-                    // })
                 }
             )
         })
     }) (req, res)
 }
 
-// exports.logout = function(req, res, next) {
-//     res.cookie("token", null, {
-//         httpOnly: true,
-//         maxAge: 100*60*60*24*7,
-//         domain: process.env.DOMAIN,
-//         sameSite: "Lax"
-//     }).send({
-//         authenticated: false,
-//         message: "logout success",
-//     })
-// }
-
 exports.authStatus = function(req, res, next) {
-    // try {
         jwt.verify(req.token, process.env.SECRET_KEY, async(err, authData) => {
             if (err) {
                 res.json({
@@ -132,14 +113,5 @@ exports.authStatus = function(req, res, next) {
                 isAuthenticated: true,
                 authData
             })
-        })
-    // } 
-    // catch (err) {
-    //     res.status(403).json({
-    //         isAuthenticated: false,
-    //         user: {
-    //             _id: "none"
-    //         }
-    //     }) 
-    // }      
+        })    
 }

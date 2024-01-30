@@ -10,8 +10,6 @@ router.post("/register", authController.register)
 
 router.post("/login", authController.login)
 
-// router.post("/logout", authController.logout)
-
 router.get("/auth-status", verifyToken, authController.authStatus)
 
 //posts
@@ -28,15 +26,9 @@ router.delete("/posts/:postid", verifyToken, postController.deletePost)
 //comments
 router.get("/posts/:postid/comments", commentController.allCommentsOnPost)
 
-router.get("/comments/:commentid/comments", commentController.parentCommentAndChildrenComments)
-
-router.get("/comments/:commentid", commentController.singleComment)
-
 router.post("/posts/:postid/comments", verifyToken, commentController.createCommentOnPost)
 
-router.post("/comments/:commentid/comments", verifyToken, commentController.createCommentOnComment)
-
-router.patch("/comments/:commentid", verifyToken, commentController.updateComment)
+// router.patch("/comments/:commentid", verifyToken, commentController.updateComment)
 
 router.delete("/comments/:commentid", verifyToken, commentController.deleteComment)
 
