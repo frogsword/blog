@@ -21,19 +21,19 @@ exports.register = [
             })
         }
 
-        if((req.body.password !== req.body.confirm) && (req.body.password.length > 8)) {
+        else if((req.body.password !== req.body.confirm) && (req.body.password.length > 7)) {
             res.status(403).json({
                 message: "passwords do not match: make sure each password matches and is at least 8 characters long",
             })   
         }
 
-        if(!req.body.password.length > 8) {
+        else if(!req.body.password.length > 7) {
             res.status(403).json({
                 message: "password not long enough: make sure each password matches and is at least 8 characters long",
             })   
         }
 
-        if(duplicateUsername.length > 0) {
+        else if(duplicateUsername.length > 0) {
             res.status(403).json({
                 message: "username already exists, please select another username",
             })   
