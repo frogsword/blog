@@ -21,31 +21,35 @@ exports.register = [
             })
         }
 
-        else if(duplicateUsername.length > 0) {
+        if(duplicateUsername.length > 0) {
             res.status(403).json({
                 message: "Username already exists. Select another Username.",
-            })   
+            })  
+            return 
         }
 
-        else if(!req.body.password.length > 7) {
+        if(req.body.password.length < 8) {
             res.status(403).json({
                 message: "Password must be at least 8 characters in length.",
-            })   
+            }) 
+            return  
         }
 
-        else if(req.body.password.toLowerCase() != req.body.password) {
+        if(req.body.password.toLowerCase() === req.body.password) {
             res.status(403).json({
                 message: "Password must include at least one uppercase letter.",
-            })   
+            })  
+            return 
         }
 
-        else if(req.body.password !== req.body.confirm) {
+        if(req.body.password !== req.body.confirm) {
             res.status(403).json({
                 message: "Passwords do not match.",
             })   
+            return
         }
 
-        else {
+        // else {
             bcrypt.hash(req.body.password, 10, (err, hashedPass) => {
                 if (err) {
                     return next(err)
@@ -65,7 +69,7 @@ exports.register = [
                     return
                 }
             })
-        }
+        // }
     }
 ]
 
