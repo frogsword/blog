@@ -10,7 +10,7 @@ export function Home() {
     useEffect(() => {
         const fetchData = async() => {
             const response = await fetch('https://frogsword-blog-api.adaptable.app/api/posts', {
-                mode: 'no-cors',
+                // mode: 'cors',
                 'Access-Control-Allow-Origin': "*"
             })
             const res = await response.json()
