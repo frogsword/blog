@@ -5,7 +5,7 @@ import { Home } from "./pages/home/home"
 import { Navbar } from "./components/navbar/Navbar"
 import { Login } from './components/login/Login'
 import { Register } from './components/register/Register'
-import { Post } from "./pages/post/Post"
+import { Post } from "./pages/post/post"
 import AuthProvider from './context/AuthProvider'
 import './styles.scss'
 import * as bootstrap from 'bootstrap'
