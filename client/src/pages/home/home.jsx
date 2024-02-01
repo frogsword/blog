@@ -9,7 +9,7 @@ export function Home() {
     const [posts, setPosts] = useState([])
     useEffect(() => {
         const fetchData = async() => {
-            const response = await fetch('https://frogsword-blog-api.adaptable.app/api/posts', {mode: 'no-cors'})
+            const response = await fetch('https://frogsword-blog-api.adaptable.app/api/posts')
             const res = await response.json()
             setPosts(res)
         }
