@@ -13,10 +13,9 @@ export function Login() {
         e.preventDefault();
         if (input.username !== "" && input.password !== "") {
             auth.loginAction(input)
-            window.location.reload(false)
             return
         }
-        alert("please provide a valid username and password")
+        alert("please provide a username and password")
     }
 
     const handleInput = (e) => {
@@ -28,35 +27,23 @@ export function Login() {
     }
 
         return (
-            <div className="login">
+            <div className="login-container">
+
+                <h1>Login</h1>
+
                 <form className="login-form" onSubmit={handleSubmit}>
-                    <div className="row g-3 align-items-center">
-                    <div className="col-auto">
-                        <label htmlFor="input-username" className="col-form-label">Username</label>
+
+                    <div className="row g-3 align-items-center input-container">
+                            <input type="text" placeholder="Enter Username" name="username" className="form-control focus-ring focus-ring-light" aria-describedby="usernameHelpInline" 
+                            onChange={(e) => handleInput(e.target)}></input>
                     </div>
-                    <div className="col-auto">
-                        <input type="text" id="input-username" name="username" className="form-control" aria-describedby="usernameHelpInline" 
-                        onChange={(e) => handleInput(e.target)}></input>
-                    </div>
-                    </div>
-    
                     
-                    <div className="row g-3 align-items-center">
-                    <div className="col-auto">
-                        <label htmlFor="inputPassword6" className="col-form-label">Password</label>
-                    </div>
-                    <div className="col-auto">
-                        <input type="password" id="inputPassword6" name="password" className="form-control" aria-describedby="passwordHelpInline"
-                        onChange={(e) => handleInput(e.target)}></input>
-                    </div>
-                    <div className="col-auto">
-                        <span id="passwordHelpInline" className="form-text">
-                        Must be 8-20 characters long.
-                        </span>
-                    </div>
+                    <div className="row g-3 align-items-center input-container">
+                            <input type="password" placeholder="Enter Password" name="password" className="form-control focus-ring focus-ring-light" aria-describedby="passwordHelpInline"
+                            onChange={(e) => handleInput(e.target)}></input>
                     </div>
     
-                    <button className="btn btn-primary">Submit</button>
+                    <button id="submit-btn" className="btn btn-primary">Submit</button>
                 </form>
             </div>
         )

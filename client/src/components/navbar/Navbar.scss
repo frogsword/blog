@@ -1,15 +1,45 @@
-.navbar {
+#navbar {
     background-color: #121212;
-    color: azure;
+    height: 9vh;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    justify-content: space-around;
+    align-items: center;
+}
+
+#navbar-home-link {
+    display: flex;
+    justify-content: left;
+    padding-left: 7vw;
+}
+
+#navbar-auth-functions {
+    display: flex;
+    justify-content: right;
+    gap: 5px;
+    padding-right: 7vw;
+}
+
+.navbar-title {
+    color: white;
 }
 
 #login-btn {
-    --bs-btn-bg: #7c3aed;
-    --bs-btn-border-color:  #5914d2;
-    --bs-btn-hover-bg: #5914d2;
-    --bs-btn-active-bg: #450fa3;
-    --bs-btn-hover-border-color: #5914d2;
-    --bs-btn-active-border-color: #450fa3;
+    --bs-btn-bg: #6d28d9;
+    --bs-btn-border-color: #5b21b6;
+    --bs-btn-hover-bg: #5b21b6;
+    --bs-btn-active-bg: #4c1d95;
+    --bs-btn-hover-border-color: #5b21b6;
+    --bs-btn-active-border-color: #4c1d95;
+}
+
+#register-btn {
+    --bs-btn-bg: #595959;
+    --bs-btn-border-color:  #4d4d4d;
+    --bs-btn-hover-bg: #4d4d4d;
+    --bs-btn-hover-border-color: #4d4d4d;
+    --bs-btn-active-bg: #3f3f3f;
+    --bs-btn-active-border-color: #3f3f3f;
 }
 
 

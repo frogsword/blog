@@ -1,10 +1,46 @@
-#login-btn {
-    --bs-btn-bg: #7c3aed;
-    --bs-btn-border-color:  #5914d2;
-    --bs-btn-hover-bg: #5914d2;
-    --bs-btn-active-bg: #450fa3;
-    --bs-btn-hover-border-color: #5914d2;
-    --bs-btn-active-border-color: #450fa3;
+.login-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: start;
+    align-items: center;
+    gap: 5vh;
+    min-height: 91vh;
+    width: 100%;
+    color: whitesmoke;
+    background-color: #282828;
+    font-size: 20px;
+}
+
+.login-container h1 {
+    padding-top: 2vh;
+    font-size: 50px;
+}
+
+.login-form {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 5vh;
+    background-color: #3f3f3f;
+    border-radius: 20px;
+    padding: 3em;
+    box-shadow: rgba(0, 0, 0, 0.4) 0px 2px 4px, rgba(0, 0, 0, 0.3) 0px 7px 13px -3px, rgba(0, 0, 0, 0.2) 0px -3px 0px inset;
+}
+
+.input-container {
+    display: flex;
+    flex-direction: column;
+}
+
+#submit-btn {
+    --bs-btn-bg: #6d28d9;
+    --bs-btn-border-color: #5b21b6;
+    --bs-btn-hover-bg: #5b21b6;
+    --bs-btn-active-bg: #4c1d95;
+    --bs-btn-hover-border-color: #5b21b6;
+    --bs-btn-active-border-color: #4c1d95;
+    font-size: 20px;
 }
 
 

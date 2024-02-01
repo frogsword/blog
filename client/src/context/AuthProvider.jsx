@@ -1,3 +1,5 @@
+/* eslint-disable react-refresh/only-export-components */
+/* eslint-disable react/prop-types */
 import { useState, useContext, createContext } from "react";
 import { useNavigate } from "react-router-dom"
 
@@ -13,7 +15,6 @@ const AuthProvider = ({ children }) => {
             const response = await fetch('https://frogsword-blog-api.adaptable.app/api/login', {
                 mode: 'cors',
                 method: 'POST',
-                credentials: 'include',
                 body: JSON.stringify(data),
                 headers: {
                     'Content-Type': 'application/json'
@@ -21,11 +22,16 @@ const AuthProvider = ({ children }) => {
             })
             const res = await response.json()
             
-            if (res) {
+            if (res.token) {
                 setUser(res.user) 
                 setToken(res.token)
                 localStorage.setItem("site", res.token)
                 navigate("/")
+                window.location.reload()
+                return
+            }
+            else if (res.message) {
+                alert(res.message)
                 return
             }
         }
@@ -38,7 +44,8 @@ const AuthProvider = ({ children }) => {
         setUser(null)
         setToken("")
         localStorage.removeItem("site")
-        navigate("/login")
+        navigate("/")
+        window.location.reload()
     }
 
     const register = async (data) => {
@@ -52,10 +59,15 @@ const AuthProvider = ({ children }) => {
                 }
             })
             const res = await response.json()
-            
-            if (res) {
+
+            if (res.message === "User created successfully. Please login.") {
+                alert(res.message)
                 navigate("/login")
+                window.location.reload()
                 return
+            }
+            else {
+                alert("Registration failed: Password must be at least 8 characters long, including one uppercase letter.")
             }
         }
         catch (err) {
@@ -64,7 +76,7 @@ const AuthProvider = ({ children }) => {
     }
 
     return (
-    <AuthContext.Provider value={{ token, user, loginAction, logOut, register}}>
+    <AuthContext.Provider value={{ user, token, logOut, loginAction, register}}>
         {children}
     </AuthContext.Provider>
     )
