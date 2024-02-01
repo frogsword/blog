@@ -24,7 +24,7 @@ app.use(passport.initialize());
 app.use(cookieParser())
 
 let corsOptions = {
-    origin: ["http://localhost:3000", "http://localhost:5173", "https://frogsword-blog-api.adaptable.app"],
+    origin: ["http://localhost:3000", "http://localhost:5173", "https://frogsword-blog-api.adaptable.app", "https://blog-9fqp-christophers-projects-b891b854.vercel.app/", "https://blog-9fqp.vercel.app/"],
     optionsSuccessStatus: 200,
     credentials: true,
     allowedMethods: ["GET", "POST", "PUT", "DELETE", "PATCH"]
