@@ -89,8 +89,6 @@ export function Post() {
             return
         }
         navigate("/")
-        navigate(`/posts/${_id}`)
-        // window.location.reload()
     }
 
     //deleting comments
@@ -108,8 +106,6 @@ export function Post() {
             .then((res) => console.log(res))
         } catch (err) {console.log(err)}
         navigate("/")
-        navigate(`/posts/${_id}`)
-        // window.location.reload()
     }
 
     let date = new Date(dateCreated)
