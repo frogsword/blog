@@ -1,6 +1,6 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 import { useState, useEffect } from "react"
-import { useLocation, Link } from "react-router-dom"
+import { useLocation, Link, useNavigate } from "react-router-dom"
 import "./post.scss"
 
 export function Post() {
@@ -8,6 +8,7 @@ export function Post() {
     const { _id, title, text, author, dateCreated } = state
     const [loading, setLoading] = useState(true)
     const [errMsg, setErrMsg] = useState(null)
+    const navigate = useNavigate()
 
     //get auth status and comments
     const [authenticated, setAuthenticated] = useState(false)
@@ -87,7 +88,9 @@ export function Post() {
             setErrMsg("Comment field is empty!")
             return
         }
-        window.location.reload()
+        navigate("/")
+        navigate(`/posts/${_id}`)
+        // window.location.reload()
     }
 
     //deleting comments
@@ -104,8 +107,9 @@ export function Post() {
             })
             .then((res) => console.log(res))
         } catch (err) {console.log(err)}
-        // navigate("/")
-        window.location.reload()
+        navigate("/")
+        navigate(`/posts/${_id}`)
+        // window.location.reload()
     }
 
     let date = new Date(dateCreated)

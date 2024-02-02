@@ -62,8 +62,9 @@ const AuthProvider = ({ children }) => {
 
             if (res.message === "User created successfully. Please login.") {
                 alert(res.message)
+                navigate("/")
                 navigate("/login")
-                window.location.reload()
+                // window.location.reload()
                 return
             }
             else {
